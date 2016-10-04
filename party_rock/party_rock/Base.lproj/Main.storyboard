@@ -12,10 +12,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="party_rock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="party_rock" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -68,7 +68,7 @@
                                 <frame key="frameInset" minY="221" width="375" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="A6y-Ka-AZv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PartyCell" rowHeight="85" id="A6y-Ka-AZv" customClass="PartyCell" customModule="party_rock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A6y-Ka-AZv" id="SPh-J9-6c1">
@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="width" constant="68" id="YnB-R1-vcC"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pj-40-pNa">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pj-40-pNa" userLabel="Video Title">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="41" id="nMq-SV-1d2"/>
                                                     </constraints>
@@ -98,6 +98,10 @@
                                                 <constraint firstItem="C01-rp-DMG" firstAttribute="centerY" secondItem="SPh-J9-6c1" secondAttribute="centerY" id="rx0-YT-gIU"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="videoPreviewImage" destination="C01-rp-DMG" id="fkH-rp-exW"/>
+                                            <outlet property="videoTitle" destination="8pj-40-pNa" id="Mro-UV-IXL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -117,10 +121,45 @@
                             <constraint firstItem="24A-Oz-S1A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rKA-ze-6dn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="f8U-sV-Hz4" id="RRm-Jn-BvD"/>
+                        <segue destination="Ltn-Xe-zUA" kind="showDetail" id="4gF-WM-dbs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--VideoVC-->
+        <scene sceneID="r5o-s4-K9l">
+            <objects>
+                <viewController id="Ltn-Xe-zUA" customClass="VideoVC" customModule="party_rock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jko-Nb-3Vp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lcv-Q8-Lce"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JxK-LY-tvv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-fL-GNl">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="219" id="9t4-92-NV3"/>
+                                </constraints>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fhA-fL-GNl" firstAttribute="top" secondItem="JxK-LY-tvv" secondAttribute="top" id="SkJ-UB-3B3"/>
+                            <constraint firstItem="fhA-fL-GNl" firstAttribute="leading" secondItem="JxK-LY-tvv" secondAttribute="leading" id="dev-on-B50"/>
+                            <constraint firstAttribute="trailing" secondItem="fhA-fL-GNl" secondAttribute="trailing" id="gkg-bc-Sje"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iqi-b8-m1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="885.60000000000002" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>
